@@ -35,27 +35,7 @@ class EpsilonGreedyAgent:
 
 
 class UCBAgent:
-    """
-    Agent using Upper Confidence Bound (UCB) algorithm.
-    
-    UCB balances exploration and exploitation by adding an uncertainty bonus
-    to each action's value estimate. Actions that have been tried less often
-    receive a larger bonus.
-    """
-    
     def __init__(self, n_actions, c=2.0):
-        """
-        Initialize the UCB agent.
-        
-        Args:
-            n_actions (int): Number of available actions (arms)
-            c (float): Exploration parameter (controls exploration vs exploitation)
-                      Higher c = more exploration
-                      Typical values: 1.0 to 3.0
-        
-        Example:
-            agent = UCBAgent(n_actions=10, c=2.0)
-        """
         self.n_actions = n_actions
         self.c = c
         
@@ -65,25 +45,6 @@ class UCBAgent:
         self.t = 0  # Total timesteps
     
     def select_action(self):
-        """
-        Select an action using UCB policy.
-        
-        Returns:
-            int: Selected action index
-        
-        UCB Formula:
-            action = argmax[Q(a) + c * sqrt(log(t) / N(a))]
-            
-            where:
-            - Q(a): estimated value of action a
-            - c: exploration parameter
-            - t: total timesteps
-            - N(a): number of times action a was selected
-        
-        Policy:
-            1. First, try each action at least once
-            2. Then, select action with highest UCB value
-        """
         self.t += 1
         
         # Phase 1: Try each action at least once
@@ -101,38 +62,17 @@ class UCBAgent:
         return np.random.choice(best_actions)
     
     def update(self, action, reward):
-        """
-        Update action-value estimates using incremental average.
-        
-        Args:
-            action (int): Action that was taken
-            reward (float): Reward that was received
-        
-        Update rule:
-            Q(a) ← Q(a) + 1/N(a) * (reward - Q(a))
-        
-        Note: The update rule is the same as epsilon-greedy.
-        The difference is in how actions are selected.
-        """
         self.N[action] += 1
         alpha = 1.0 / self.N[action]  # Step size (decreases over time)
         self.Q[action] += alpha * (reward - self.Q[action])
     
     def get_Q_values(self):
-        """Get current Q-value estimates."""
         return self.Q.copy()
     
     def get_action_counts(self):
-        """Get count of times each action was selected."""
         return self.N.copy()
     
     def get_ucb_values(self):
-        """
-        Get current UCB values for all actions.
-        
-        Returns:
-            array: UCB values for each action
-        """
         if self.t == 0:
             return np.zeros(self.n_actions)
         
@@ -146,5 +86,4 @@ class UCBAgent:
         return ucb_values
     
     def __str__(self):
-        """String representation of the agent."""
         return f"UCBAgent(n_actions={self.n_actions}, c={self.c})"
