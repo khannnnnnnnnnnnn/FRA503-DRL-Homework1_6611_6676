@@ -26,17 +26,13 @@ IsaacLab/source/isaaclab_tasks/isaaclab_tasks/manager_based/classic/cartpole/car
 - Horizontal force applied to the cart joint (`joint_effort`)
 
 ### Observation Space
-- 4D continuous state:
-  - Cart position (x)
-  - Cart velocity (ẋ)
-  - Pole angle (θ)
-  - Pole angular velocity (θ̇)
-
+`[x,x_dot,theta,theta_dot]`
+  
 ### Termination Conditions
-- Episode timeout
-- Cart position outside `[-3.0, 3.0]`
+- Episode timeout (300 timesteps)
+- cart_pos (`x`) outside `[-3.0, 3.0]`
 
-### Reward Terms (Default)
+### Reward Terms (Default values)
 - Alive reward (+1.0)
 - Termination penalty (-2.0)
 - Pole position penalty (-1.0)
