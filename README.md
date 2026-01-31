@@ -134,8 +134,6 @@ output/
 - 3 UCB comparison plots
 - 6 algorithm comparison plots
 
-All plots are high-resolution (dpi=150) and publication-ready.
-
 ---
 
 ### Part 5: Structure
