@@ -43,6 +43,8 @@ Training metrics (cumulative reward, episode length, etc.) are monitored via **T
 - -0.01 Cart velocity penalty (shaping)  
 - -0.005 Pole angular velocity penalty (shaping)
 
+---
+
 ## Part 2: Playing with Cartpole RL Agent
 
 Baseline model at 448,000 steps is used. Experiments adjust one reward weight at a time (0.0 or ×10) while keeping others default. Each experiment observes a single episode of ~300 timesteps.
@@ -100,6 +102,8 @@ Baseline model at 448,000 steps is used. Experiments adjust one reward weight at
 - **-0.05**: Lower reward, highly damped/slow motion, risk of slow recovery.
 
 **Conclusion**: Angular velocity shaping smooths motion; extremes trade responsiveness for calmness.
+
+---
 
 ## Part 3: Mapping RL Fundamentals
 
