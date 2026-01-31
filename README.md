@@ -1,5 +1,5 @@
 # FRA503 – Deep Reinforcement Learning for Robotics  
-## Homework 0: Cartpole Reinforcement Learning
+## Homework 0: Cartpole RL Agent
 
 **Authors**
 - Chantouch Orungrote (66340500011)  
