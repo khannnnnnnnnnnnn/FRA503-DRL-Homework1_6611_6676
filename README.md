@@ -5,7 +5,7 @@
 * Chantouch Orungrote (66340500011)
 * Sasish Keawsing (66340500076)
 
-## Overview
+## Objectives
 
 This homework explores the Isaac-Cartpole-v0 environment in Isaac Sim using reinforcement learning.
 
