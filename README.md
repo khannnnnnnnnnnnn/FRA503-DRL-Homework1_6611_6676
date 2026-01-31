@@ -5,7 +5,10 @@
 - Sasish Keawsing (66340500076)
 
 ## Overview
-This homework explores the Isaac-Cartpole-v0 environment in Isaac Sim using reinforcement learning. Part 1 examines the default agent setup, training, and environment configuration. Part 2 conducts targeted experiments by scaling individual reward weights to analyze their impact on agent behavior and performance. Part 3 maps core reinforcement learning fundamentals to the Cartpole task.
+This homework explores the Isaac-Cartpole-v0 environment in Isaac Sim using reinforcement learning. 
+- **Part 1:** examines the default agent setup, training, and environment configuration.
+- **Part 2:** conducts targeted experiments by scaling individual reward weights to analyze their impact on agent behavior and performance.
+- **Part 3:** maps core reinforcement learning fundamentals to the Cartpole task.
 
 ## Part 1: Look at Cartpole RL Agent
 
