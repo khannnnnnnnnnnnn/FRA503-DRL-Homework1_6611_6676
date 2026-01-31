@@ -1,34 +1,8 @@
-"""
-utils.py
-
-Utility functions for multi-armed bandit experiments.
-Includes simulation runners, analysis functions, and metrics calculation.
-
-FRA 503 Homework 1
-"""
 import numpy as np
 from bandit import Bandit
 from agents import EpsilonGreedyAgent, UCBAgent
 
-
-# ============================================================================
-# Simulation Functions
-# ============================================================================
-
 def run_single_experiment(bandit, agent, n_steps):
-    """
-    Run a single experiment (one episode of n_steps).
-    
-    Args:
-        bandit (Bandit): The bandit environment
-        agent (Agent): The agent (EpsilonGreedyAgent or UCBAgent)
-        n_steps (int): Number of timesteps to run
-    
-    Returns:
-        tuple: (actions, rewards)
-            - actions: array of actions taken at each step
-            - rewards: array of rewards received at each step
-    """
     actions = np.zeros(n_steps, dtype=np.int32)
     rewards = np.zeros(n_steps, dtype=np.float64)
     
@@ -50,24 +24,6 @@ def run_single_experiment(bandit, agent, n_steps):
 
 
 def run_multiple_experiments(bandit_probs, agent_type, n_experiments, n_steps, **agent_params):
-    """
-    Run multiple experiments and aggregate results.
-    
-    Args:
-        bandit_probs (list): Probabilities for each arm
-        agent_type (str): 'epsilon-greedy' or 'ucb'
-        n_experiments (int): Number of experiments to run
-        n_steps (int): Number of steps per experiment
-        **agent_params: Additional parameters for agent
-            - epsilon: for epsilon-greedy
-            - c: for UCB
-    
-    Returns:
-        dict: Dictionary containing:
-            - 'avg_rewards': Average reward at each timestep
-            - 'optimal_action_pct': % times optimal action was selected
-            - 'all_rewards': All rewards from all experiments (for analysis)
-    """
     n_arms = len(bandit_probs)
     optimal_arm = np.argmax(bandit_probs)
     
@@ -105,46 +61,13 @@ def run_multiple_experiments(bandit_probs, agent_type, n_experiments, n_steps, *
         'all_rewards': all_rewards
     }
 
-
-# ============================================================================
-# Analysis Functions
-# ============================================================================
-
 def calculate_cumulative_regret(rewards, optimal_reward):
-    """
-    Calculate cumulative regret over time.
-    
-    Regret at time t = optimal_reward - actual_reward
-    Cumulative regret = sum of all regrets up to time t
-    
-    Args:
-        rewards (array): Rewards received at each timestep
-        optimal_reward (float): Reward of optimal arm
-    
-    Returns:
-        array: Cumulative regret at each timestep
-    """
     regret_per_step = optimal_reward - rewards
     cumulative_regret = np.cumsum(regret_per_step)
     return cumulative_regret
 
 
 def calculate_convergence_step(rewards, optimal_reward, threshold=0.95, window=50):
-    """
-    Calculate the timestep when the algorithm converges.
-    
-    Convergence is defined as when the moving average reward reaches
-    'threshold' percentage of the optimal reward.
-    
-    Args:
-        rewards (array): Rewards at each timestep
-        optimal_reward (float): Reward of optimal arm
-        threshold (float): Percentage of optimal (default: 0.95 = 95%)
-        window (int): Window size for moving average (default: 50)
-    
-    Returns:
-        int: Timestep when converged (or len(rewards) if never converged)
-    """
     target_reward = threshold * optimal_reward
     
     # Check if we have enough data
@@ -165,22 +88,6 @@ def calculate_convergence_step(rewards, optimal_reward, threshold=0.95, window=5
 
 
 def calculate_statistics(results, optimal_reward, n_steps):
-    """
-    Calculate various statistics from experiment results.
-    
-    Args:
-        results (dict): Results from run_multiple_experiments
-        optimal_reward (float): Reward of optimal arm
-        n_steps (int): Number of steps per experiment
-    
-    Returns:
-        dict: Dictionary with statistics:
-            - total_reward: Sum of all rewards
-            - avg_reward_per_step: Average reward per timestep
-            - final_regret: Cumulative regret at final timestep
-            - convergence_step: When algorithm converged
-            - final_optimal_pct: % optimal action in last 100 steps
-    """
     avg_rewards = results['avg_rewards']
     optimal_pct = results['optimal_action_pct']
     
@@ -203,15 +110,6 @@ def calculate_statistics(results, optimal_reward, n_steps):
 
 
 def print_experiment_results(param_name, param_value, stats, verbose=True):
-    """
-    Print formatted results for an experiment.
-    
-    Args:
-        param_name (str): Name of parameter (e.g., 'ε' or 'c')
-        param_value (float): Value of parameter
-        stats (dict): Statistics dictionary
-        verbose (bool): If True, print detailed stats
-    """
     if verbose:
         print(f"\n{param_name} = {param_value}")
         print("-" * 70)
@@ -226,14 +124,6 @@ def print_experiment_results(param_name, param_value, stats, verbose=True):
 
 
 def print_summary_table(all_results, param_name, n_steps):
-    """
-    Print a summary table comparing all parameter values.
-    
-    Args:
-        all_results (dict): Dictionary of {param_value: stats}
-        param_name (str): Name of parameter
-        n_steps (int): Number of steps per experiment
-    """
     print("\n" + "=" * 100)
     print("SUMMARY TABLE")
     print("=" * 100)
@@ -254,16 +144,6 @@ def print_summary_table(all_results, param_name, n_steps):
 
 
 def find_best_parameter(all_results, metric='total_reward'):
-    """
-    Find the best parameter value based on a metric.
-    
-    Args:
-        all_results (dict): Dictionary of {param_value: stats}
-        metric (str): Metric to optimize ('total_reward', 'convergence_step', 'final_regret')
-    
-    Returns:
-        float: Best parameter value
-    """
     if metric == 'final_regret':
         # Lower is better for regret
         return min(all_results.keys(), key=lambda k: all_results[k][metric])
@@ -274,13 +154,7 @@ def find_best_parameter(all_results, metric='total_reward'):
         # Higher is better for reward metrics
         return max(all_results.keys(), key=lambda k: all_results[k][metric])
 
-
-# ============================================================================
-# Display Functions
-# ============================================================================
-
 def print_config(bandit_probs, n_experiments, n_steps):
-    """Print experiment configuration."""
     print("=" * 70)
     print("EXPERIMENT CONFIGURATION")
     print("=" * 70)
