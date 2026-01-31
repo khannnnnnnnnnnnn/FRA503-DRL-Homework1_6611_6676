@@ -8,7 +8,7 @@
 
 ## Objective
 
-Implement a **multi-armed bandit framework from scratch** and using:
+Implement a **multi-armed bandit from scratch** with:
 - **Epsilon-Greedy**
 - **Upper Confidence Bound (UCB)**
 
