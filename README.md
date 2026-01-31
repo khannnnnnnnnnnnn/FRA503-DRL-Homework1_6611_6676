@@ -37,7 +37,7 @@ Training metrics (cumulative reward, episode length, etc.) are monitored via **T
 **Question 2:** Action space and observation space?
 **Answer:**
 
-* **Action space**: Single continuous value (joint effort force on `slide_to_cart`, scaled by 100.0).
+* **Action space**: Joint effort force on `slide_to_cart`, scaled by 100.0
 * **Observation space**: $(x,\ \dot{x},\ \theta,\ \dot{\theta})$
 
 **Question 3:** Episode termination conditions?
