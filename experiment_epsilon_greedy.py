@@ -1,11 +1,3 @@
-"""
-experiment_epsilon_greedy.py
-
-Run Epsilon-Greedy experiments with multiple epsilon values.
-Tests ε ∈ {0.0, 0.01, 0.05, 0.1, 0.5}
-
-FRA 503 Homework 1
-"""
 import os
 import numpy as np
 import matplotlib.pyplot as plt
@@ -21,15 +13,6 @@ from utils import (
 
 
 def plot_epsilon_greedy_results(all_results, bandit_probs, n_experiments, output_dir):
-    """
-    Generate separate plots for epsilon-greedy experiments.
-    
-    Args:
-        all_results (dict): Dictionary of {epsilon: stats}
-        bandit_probs (list): Arm probabilities
-        n_experiments (int): Number of experiments run
-        output_dir (str): Directory to save plots
-    """
     os.makedirs(output_dir, exist_ok=True)
     epsilon_values = sorted(all_results.keys())
     optimal_prob = np.max(bandit_probs)
@@ -143,19 +126,6 @@ def plot_epsilon_greedy_results(all_results, bandit_probs, n_experiments, output
 
 
 def run_epsilon_greedy_experiments(bandit_probs, epsilon_values, n_experiments, n_steps, output_dir):
-    """
-    Run epsilon-greedy experiments with multiple epsilon values.
-    
-    Args:
-        bandit_probs (list): Arm probabilities
-        epsilon_values (list): List of epsilon values to test
-        n_experiments (int): Number of experiments per epsilon
-        n_steps (int): Steps per experiment
-        output_dir (str): Directory to save results
-    
-    Returns:
-        dict: Results for all epsilon values
-    """
     print("\n" + "=" * 70)
     print("EPSILON-GREEDY EXPERIMENTS")
     print("=" * 70)

@@ -4,7 +4,7 @@
 - Chantouch Orungrote (6340500011)  
 - Sasish Kaewsing (6340500076)
 
-## Goal
+## Objectives
 Implement a multi-armed bandit framework from scratch, including ε-greedy and UCB algorithms, run systematic experiments with multiple parameter values, visualize performance across all configurations, and analyze convergence behavior and cumulative regret.
 
 ---
@@ -43,11 +43,8 @@ Implement a multi-armed bandit framework from scratch, including ε-greedy and U
 | BANDIT_PROBS            | [0.10, 0.50, 0.60, 0.80, 0.10, 0.25, 0.60, 0.45, 0.75, 0.65] | Bernoulli success probabilities for each arm |
 | EPSILON_VALS            | [0.0, 0.01, 0.05, 0.1, 0.5] | Exploration rates for ε-greedy |
 | UCB_C_VALS              | [0.5, 1.0, 2.0, 3.0, 5.0] | Exploration constants for UCB |
-| CONVERGENCE_THRESHOLD   | 0.95    | Threshold for convergence (95% of optimal reward) |
-| ROLLING_WINDOW          | 50      | Window size for rolling average |
 
-**Convergence definition**:  
-The first timestep where the 50-step rolling average reward ≥ 95% of optimal reward and remains ≥ 95% until the end.
+#### **Note: Random seed (42) for all experiments**
 
 ---
 
@@ -136,8 +133,6 @@ output/
 - 15 individual UCB plots (5 c × 3 metrics)
 - 3 UCB comparison plots
 - 6 algorithm comparison plots
-
-All plots are high-resolution (dpi=150) and publication-ready.
 
 ---
 

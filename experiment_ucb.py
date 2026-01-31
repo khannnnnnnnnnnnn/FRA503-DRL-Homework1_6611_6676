@@ -1,11 +1,3 @@
-"""
-experiment_ucb.py
-
-Run UCB experiments with multiple c values.
-Tests c ∈ {0.5, 1.0, 2.0, 3.0, 5.0}
-
-FRA 503 Homework 1
-"""
 import os
 import numpy as np
 import matplotlib.pyplot as plt
@@ -21,15 +13,6 @@ from utils import (
 
 
 def plot_ucb_results(all_results, bandit_probs, n_experiments, output_dir):
-    """
-    Generate separate plots for UCB experiments.
-    
-    Args:
-        all_results (dict): Dictionary of {c: stats}
-        bandit_probs (list): Arm probabilities
-        n_experiments (int): Number of experiments run
-        output_dir (str): Directory to save plots
-    """
     os.makedirs(output_dir, exist_ok=True)
     c_values = sorted(all_results.keys())
     optimal_prob = np.max(bandit_probs)
@@ -143,19 +126,6 @@ def plot_ucb_results(all_results, bandit_probs, n_experiments, output_dir):
 
 
 def run_ucb_experiments(bandit_probs, c_values, n_experiments, n_steps, output_dir):
-    """
-    Run UCB experiments with multiple c values.
-    
-    Args:
-        bandit_probs (list): Arm probabilities
-        c_values (list): List of c values to test
-        n_experiments (int): Number of experiments per c
-        n_steps (int): Steps per experiment
-        output_dir (str): Directory to save results
-    
-    Returns:
-        dict: Results for all c values
-    """
     print("\n" + "=" * 70)
     print("UCB EXPERIMENTS")
     print("=" * 70)

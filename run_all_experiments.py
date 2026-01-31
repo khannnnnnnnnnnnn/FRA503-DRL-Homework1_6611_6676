@@ -1,13 +1,3 @@
-"""
-run_all_experiments.py
-
-Main runner script for FRA 503 Homework 1.
-Runs all multi-armed bandit experiments:
-- Epsilon-Greedy with ε ∈ {0.0, 0.01, 0.05, 0.1, 0.5}
-- UCB with c ∈ {0.5, 1.0, 2.0, 3.0, 5.0}
-
-Author: Student Solution
-"""
 import os
 import time
 import numpy as np
@@ -19,18 +9,6 @@ from experiment_ucb import run_ucb_experiments
 
 def plot_epsilon_vs_ucb_comparison(epsilon_results, ucb_results, bandit_probs, 
                                    epsilon_values, c_values, n_experiments, output_dir):
-    """
-    Generate comparison plots between best Epsilon-Greedy and best UCB.
-    
-    Args:
-        epsilon_results (dict): Results from epsilon-greedy experiments
-        ucb_results (dict): Results from UCB experiments
-        bandit_probs (list): Arm probabilities
-        epsilon_values (list): Epsilon values tested
-        c_values (list): C values tested
-        n_experiments (int): Number of experiments
-        output_dir (str): Directory to save plots
-    """
     os.makedirs(output_dir, exist_ok=True)
     optimal_prob = np.max(bandit_probs)
     
@@ -174,11 +152,6 @@ def plot_epsilon_vs_ucb_comparison(epsilon_results, ucb_results, bandit_probs,
 
 
 def main():
-    """Main execution function."""
-    
-    # ========================================================================
-    # Configuration
-    # ========================================================================
     bandit_probs = [0.10, 0.50, 0.60, 0.80, 0.10,
                     0.25, 0.60, 0.45, 0.75, 0.65]
     
@@ -191,10 +164,7 @@ def main():
     output_base_dir = os.path.join(os.getcwd(), "output")
     epsilon_output_dir = os.path.join(output_base_dir, "epsilon_greedy")
     ucb_output_dir = os.path.join(output_base_dir, "ucb")
-    
-    # ========================================================================
-    # Print Header
-    # ========================================================================
+
     print("\n" + "=" * 70)
     print(" " * 15 + "FRA 503 HOMEWORK 1")
     print(" " * 10 + "Multi-Armed Bandit Experiments")
@@ -208,9 +178,6 @@ def main():
     print(f"  - UCB c values:   {c_values}")
     print("=" * 70)
     
-    # ========================================================================
-    # Run Experiments
-    # ========================================================================
     start_time = time.time()
     
     # Part 1: Epsilon-Greedy Experiments
@@ -267,10 +234,7 @@ def main():
     )
     
     total_time = time.time() - start_time
-    
-    # ========================================================================
-    # Final Summary
-    # ========================================================================
+
     print("\n\n")
     print("╔" + "=" * 68 + "╗")
     print("║" + " " * 22 + "EXPERIMENT COMPLETE!" + " " * 25 + "║")
@@ -367,7 +331,6 @@ def main():
     print("║" + " " * 15 + "ALL EXPERIMENTS COMPLETED SUCCESSFULLY!" + " " * 14 + "║")
     print("╚" + "=" * 68 + "╝")
     print()
-
 
 if __name__ == "__main__":
     main()
