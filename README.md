@@ -41,8 +41,8 @@ IsaacLab/source/isaaclab_tasks/isaaclab_tasks/manager_based/classic/cartpole/car
 ---
 
 ## Experiments
-**Baseline model:** Default model @448,000 timesteps
-**Single episode:** 300 timesteps
+- **Baseline model:** Default model @448,000 timesteps
+- **Single episode:** 300 timesteps
 
 Reward-weight experiments were conducted:
 1. Alive reward
