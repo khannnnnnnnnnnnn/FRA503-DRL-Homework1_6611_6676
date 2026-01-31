@@ -123,7 +123,7 @@ Components (see diagrams):
 
 | Concept          | Temporal Scope      | Provided By | Function              |
 |------------------|---------------------|-------------|-----------------------|
-| Reward (R_{t+1}) | One step            | Environment | Feedback signal       |
+| Reward ($R_{t+1}$) | One step            | Environment | Feedback signal       |
 | Return (G_t)     | Overall episode     | Rewards     | Optimization objective|
 | Value (V^π(s))   | Expected future     | Agent       | Decision guidance     |
 
